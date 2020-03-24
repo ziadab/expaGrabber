@@ -11,10 +11,12 @@ def findNumber(country_code, number):
     if country_code != None and number != None:
         if len(number) == 10 and country_code == "+212":
             return country_code + number[1:]
+        elif len(number) == 13 and number.startswith("+212"):
+            return number
         else:
             return country_code + number
     else:
-        return False
+        return "No Number :'("
     
 
 
@@ -38,11 +40,8 @@ def index():
                 katarina["Email"] = neeko["email"]
                 # print(neeko["country_code"], neeko["phone"])
                 # pprint.pprint(neeko)
-                katarina["Phone"] = findNumber(neeko["country_code"], neeko["phone"])
-                if katarina["Phone"] == False:
-                    pass
-                else: 
-                    modifiedArray.append(katarina)
+                katarina["Phone"] = findNumber(neeko["country_code"], neeko["phone"]) 
+                modifiedArray.append(katarina)
 
             return jsonify(modifiedArray), 200
 
